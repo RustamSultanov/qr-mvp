@@ -40,9 +40,9 @@
                         <h6 class="mdc-typography--headline6">{{ product.short_descrip }}</h6>
                         <a href="#" class="mdc-typography-text--muted mdc-typography--body2">Ошибка?</a>
                         <div class="button-wrap">
-                            <button class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">
+                            <a href="{% url 'product_detail' product.id %}"><button class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">
                                 О ПРОДУКТЕ
-                            </button>
+                            </button></a>
                         </div>
                         <div class="button-wrap">
                             <button class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">

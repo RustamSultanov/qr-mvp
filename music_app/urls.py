@@ -17,4 +17,6 @@ urlpatterns = [
         'edit-profile/<int:user_id>', views.edit_profile_view, name='edit_employee'),
     path(
         'product/<int:product_id>', views.product_view, name='product'),
+    path(
+        'product-detail/<int:product_id>', views.product_detail_view, name='product_detail'),
 ]

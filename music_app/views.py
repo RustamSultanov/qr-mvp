@@ -16,6 +16,9 @@ def product_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'product.html', {'product': product})
 
+def product_detail_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'product.html', {'product': product})
 
 @login_required
 def edit_profile_view(request, user_id):
