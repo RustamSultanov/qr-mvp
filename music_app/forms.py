@@ -58,26 +58,39 @@ class UserChangeForm(forms.ModelForm):
 
 
 
-class RegistrationCustomForm(RegistrationForm):
-    class Meta(RegistrationForm.Meta):
-        model = User
-        fields = [
-            User.USERNAME_FIELD,
-            'first_name',
+# class RegistrationCustomForm(RegistrationForm):
+#     class Meta(RegistrationForm.Meta):
+#         model = User
+#         fields = [
+#             User.USERNAME_FIELD,
+#             'first_name',
         
-        ]
-        widgets = {
-            User.USERNAME_FIELD : PhoneNumberInternationalFallbackWidget(attrs={'id':"email", 'class':"validate"}),
-        }
-    def __init__(self, *args, **kwargs):
-        super(RegistrationCustomForm, self).__init__(*args, **kwargs)
-        # email_field = User.get_email_field_name()
-        # self.fields[email_field].required = False
+#         ]
+#         widgets = {
+#             User.USERNAME_FIELD : PhoneNumberInternationalFallbackWidget(attrs={'id':"email", 'class':"validate"}),
+#         }
+#     def __init__(self, *args, **kwargs):
+#         super(RegistrationCustomForm, self).__init__(*args, **kwargs)
+#         # email_field = User.get_email_field_name()
+#         # self.fields[email_field].required = False
 
-    def save(self,commit=False):
-        user = super(RegistrationCustomForm, self).save(commit=False) 
-        user.save() 
-        return user
+#     def save(self,commit=False):
+#         user = super(RegistrationCustomForm, self).save(commit=False) 
+#         user.save() 
+#         return user
+
+class RegistrationCustomForm(forms.ModelForm):
+    # password_check = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder' : 'Повторите пароль', 'name' : 'password_check'}))
+    class Meta:
+        model = User
+        fields = [User.USERNAME_FIELD, 'first_name']
+        widgets = {
+        User.USERNAME_FIELD : PhoneNumberInternationalFallbackWidget(attrs={'placeholder' : 'Ваша почта'}),
+        'first_name' : forms.TextInput(attrs={'placeholder' : 'Имя', 'name' : 'Name'}),
+        
+    
+        }
+
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.EmailInput(
