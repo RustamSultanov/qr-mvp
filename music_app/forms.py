@@ -60,6 +60,7 @@ class UserChangeForm(forms.ModelForm):
 
 class RegistrationCustomForm(RegistrationForm):
     class Meta(RegistrationForm.Meta):
+        model = User
         fields = [
             User.USERNAME_FIELD,
             'first_name',
