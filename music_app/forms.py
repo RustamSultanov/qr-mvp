@@ -1,11 +1,10 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Track
 from django.db import models
 from audiofield.widgets import CustomerAudioFileWidget
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django_registration.forms import RegistrationForm
+#from django_registration.forms import RegistrationForm
 from phonenumber_field.widgets import PhoneNumberInternationalFallbackWidget
 
 User = get_user_model()
@@ -98,28 +97,6 @@ class LoginForm(AuthenticationForm):
                'class': "validate"}))
     # password = forms.CharField(
     #     widget=forms.PasswordInput(attrs={'class': "form-control"}))
-
-
-class EditTrackForm(forms.ModelForm):
-    class Meta:
-        model = Track
-        fields = ['name', 'artist', 'rating', 'image']
-
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', }),
-            'artist': forms.TextInput(attrs={'class': 'form-control', }),
-            'image': forms.FileInput(attrs={'class': 'form-control'}),
-            'rating': forms.Select(attrs={'class': 'custom-select', }),
-        }
-
-
-class UploadTrackForm(EditTrackForm):
-    audio_file = forms.FileField(
-        widget=CustomerAudioFileWidget(attrs={'class': 'form-control'}))
-
-    class Meta(EditTrackForm.Meta):
-        model = Track
-        fields = ['name', 'artist', 'rating', 'image', 'audio_file']
 
 
 class ProfileForm(forms.ModelForm):

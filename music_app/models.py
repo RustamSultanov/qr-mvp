@@ -19,21 +19,21 @@ class UserManager(BaseUserManager):
 		    raise ValueError('Users must have an phone number')
 
 		user = self.model(
-		    phone_number=self.normalize_email(phone_number),
+		    phone_number=self.phone_number,
 		    profile_picture=profile_picture,
-		    username =self.normalize_email(phone_number),
+		    username =self.phone_number,
 		)
-
+		user.set_password(password)
 		user.save(using=self._db)
 		return user
 
-	def create_superuser(self, email, password):
+	def create_superuser(self, phone_number, password):
 		"""
 		Creates and saves a superuser with the given email, date of
 		birth and password.
 		"""
 		user = self.create_user(
-		    email,
+		    phone_number,
 		    password=password,
 		)
 		user.is_admin = True
@@ -56,7 +56,7 @@ class User(AbstractUser):
     
 
     def __str__(self):
-        return self.phone_number
+        return f'{self.phone_number}'
 
     def has_perm(self, perm, obj=None):
         # Simplest possible answer: Yes, always
@@ -77,14 +77,3 @@ class User(AbstractUser):
         return self.phone_number
 
 
-class Track(AudioFile):
-    artist = models.CharField(max_length=200, null=True, blank=True)
-    image = models.ImageField(
-        upload_to='upload/audiofiles_img', null=True, blank=True)
-    RATING_CHOICE = (
-        (1, "Ужасно"),
-        (2, "Плохо"),
-        (3, "Нормально"),
-        (4, "Хорошо"),
-        (5, "Отлично"), )
-    rating = models.IntegerField(choices=RATING_CHOICE, default=5)
