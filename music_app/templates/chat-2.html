@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,  maximum-scale=1, user-scalable=no">
+    <!-- import Material Icons from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="assets/css/bundle.css">
+</head>
+<body class="mdc-typography">
+<aside class="mdc-drawer mdc-drawer--modal">
+    <div class="mdc-drawer__content">
+        <nav class="mdc-list">
+            <a class="mdc-list-item mdc-list-item--activated" href="#" aria-selected="true">
+                <span class="mdc-list-item__text">Бренды</span>
+            </a>
+            <a class="mdc-list-item" href="#">
+                <span class="mdc-list-item__text">Магазины</span>
+            </a>
+            <a class="mdc-list-item" href="#">
+                <span class="mdc-list-item__text">Отзывы</span>
+            </a>
+            <a class="mdc-list-item" href="#">
+                <span class="mdc-list-item__text">Чаты</span>
+            </a>
+        </nav>
+    </div>
+</aside>
+
+<div class="mdc-drawer-scrim"></div>
+<div class="drawer-frame-app-content">
+
+
+    <header class=" mdc-top-app-bar mdc-top-app-bar--raised" id="top-app-bar">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <button class="material-icons mdc-top-app-bar__navigation-icon">menu</button></section>
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+                <button class="material-icons mdc-top-app-bar__action-item" aria-label="Favorite">favorite</button>
+                <button class="material-icons mdc-top-app-bar__action-item" aria-label="Search">search</button>
+                <button class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page">more_vert</button>
+            </section>
+        </div>
+    </header>
+    <div class="mdc-top-app-bar--fixed-adjust mh-100vh d-flex">
+        <div class="mdc-layout-grid d-flex h-100">
+            <div class="chat">
+                <div class="chat-wrap">
+                    <div class="chat-body">
+                        <div class="h-100">
+                            <div class="chat-column">
+                                <div class="mdc-layout-grid__inner chat-top">
+                                    <div class="mdc-layout-grid__cell">
+                                        <div class="mdc-card product-card">
+                                            <div class="mdc-card-content">
+                                                <div class="mdc-layout-grid__inner">
+                                                    <div class="mdc-layout-grid__cell--span-3-phone mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-9-desktop">
+                                                        <div class="mdc-typography--overline">Детское питание</div>
+                                                        <h5 class="mdc-typography--headline5">Nuppi 1</h5>
+                                                        <div class="mdc-typography--body2 product-card-muted">Чат 3423423</div>
+                                                    </div>
+                                                    <div class="mdc-layout-grid__cell--span-1-phone mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-3-desktop">
+                                                        <img src="assets/img/nuppi-gold-small.png" alt="">
+                                                    </div>
+                                                    <div class="mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-12-desktop">
+                                                        <div class="mdc-chip">
+                                                            <img class="material-icons mdc-chip__icon mdc-chip__icon--leading" src="assets/img/avatar-placeholder.png">
+                                                            <div class="mdc-chip__text">Вы</div>
+                                                        </div>
+                                                        <div class="mdc-chip mdc-chip--green">
+                                                            <img class="material-icons mdc-chip__icon mdc-chip__icon--leading" src="assets/img/avatar.png">
+                                                            <div class="mdc-chip__text">Андрей Петров</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="chat-messages-wrap">
+                                    <div class="chat-messages">
+                                        <div class="chat-message">Вы можете оценить продукт или услугу только на основании подтверждающего документа (чек, купон, инвойс).</div>
+                                        <div class="chat-message right">Вы можете оценить продукт или услугу только на основании подтверждающего документа (чек, купон, инвойс).</div>
+                                        <div class="chat-message">Вы можете оценить продукт или услугу только на основании подтверждающего документа (чек, купон, инвойс).</div>
+                                        <div class="chat-message right">Вы можете оценить продукт или услугу только на основании подтверждающего документа (чек, купон, инвойс).</div>
+                                    </div>
+                                </div>
+                                <div class="chat-bottom">
+                                    <div class="mdc-text-field text-field mdc-text-field--outlined mdc-text-field--no-label" data-mdc-auto-init="MDCTextField">
+                                        <input type="text" id="message" class="mdc-text-field__input">
+                                        <div class="mdc-notched-outline">
+                                            <div class="mdc-notched-outline__leading"></div>
+                                            <div class="mdc-notched-outline__notch">
+                                                <label for="message" class="mdc-floating-label">Сообщение</label>
+                                            </div>
+                                            <div class="mdc-notched-outline__trailing"></div>
+                                        </div>
+                                    </div>
+                                    <button class="mdc-icon-button material-icons mdc-icon-button--raised">attach_file</button>
+                                    <button class="mdc-icon-button material-icons mdc-icon-button--raised">send</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="assets/js/bundle.js" async></script>
+</body>
+</html>
