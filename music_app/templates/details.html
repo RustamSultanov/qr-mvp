@@ -16,7 +16,7 @@
                                     <div class="mdc-typography--body2 product-card-muted">{{ product.short_descrip }}</div>
                                 </div>
                                 <div class="mdc-layout-grid__cell--span-1-phone mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-3-desktop">
-                                    <img src="assets/img/nuppi-gold-small.png" alt="">
+                                    <img src="{{ product.files.url }}" alt="">
                                 </div>
                                 <div class="mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-12-desktop">
                                     <a href="{% url 'product' product.id %}" class="mdc-button gray-button">О продукте</a>
