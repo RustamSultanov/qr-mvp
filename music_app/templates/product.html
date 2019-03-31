@@ -8,12 +8,12 @@
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell">
                     <div class="item-preview">
-                        <div class="item-rating"><span id="rating">4<sup class="material-icons">star_rate</sup></span></div>
+                        <div class="item-rating"><span id="rating">{{ product.rating }}<sup class="material-icons">star_rate</sup></span></div>
                         <div class="glide">
                             <div class="glide__track" data-glide-el="track">
                                 <ul class="glide__slides">
                                     <li class="glide__slide">
-                                        <img src="assets/img/nuppi-gold-1.png" alt="">
+                                        <img src="{{ product.files.url }}" alt="">
                                     </li>
                                     <li class="glide__slide">
                                         <img src="assets/img/nuppi-gold-1.png" alt="">
@@ -37,7 +37,7 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell mdc-typography-text--center">
-                        <h6 class="mdc-typography--headline6">H6 NUPPI® 1 адаптированная сухая молочная смесь</h6>
+                        <h6 class="mdc-typography--headline6">{{ product.short_descrip }}</h6>
                         <a href="#" class="mdc-typography-text--muted mdc-typography--body2">Ошибка?</a>
                         <div class="button-wrap">
                             <button class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">

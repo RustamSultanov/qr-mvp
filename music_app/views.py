@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, ProfileForm
+from .models import *
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.forms.models import model_to_dict
@@ -10,6 +11,11 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 # # Create your views here
+
+def product_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'product.html', {'product': product})
+
 
 @login_required
 def edit_profile_view(request, user_id):
