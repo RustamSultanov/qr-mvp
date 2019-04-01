@@ -82,9 +82,9 @@ class RegistrationCustomForm(forms.ModelForm):
     # password_check = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder' : 'Повторите пароль', 'name' : 'password_check'}))
     class Meta:
         model = User
-        fields = [User.USERNAME_FIELD, 'first_name']
+        fields = ['phone_number', 'first_name']
         widgets = {
-        User.USERNAME_FIELD : PhoneNumberInternationalFallbackWidget(attrs={'id' : 'phone', 'class' : 'mdc-text-field__input'}),
+        'phone_number' : PhoneNumberInternationalFallbackWidget(attrs={'id' : 'phone', 'class' : 'mdc-text-field__input'}),
         'first_name' : forms.TextInput(attrs={'id' : 'name', 'class' : 'mdc-text-field__input'}),
         
     
