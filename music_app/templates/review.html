@@ -38,11 +38,11 @@
                         </div>
                         <div class="mdc-typography--section">
                             <div class="ui-stars form-stars ui-stars--secondary large">
-                                {% for radio in form.rating %}
+                                {% for radio in form.rating reversed %}
                                                    
                                                    
                                 {{ radio.tag }}
-                                <label class="ui-star" for="id_rating_{{ forloop.counter }}">
+                                <label class="ui-star" for="id_rating_{{ forloop.counter0 }}">
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                 </label>
