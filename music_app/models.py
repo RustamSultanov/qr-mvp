@@ -75,6 +75,9 @@ class User(AbstractUser):
 
     def get_short_name(self):
         return self.phone_number
+        
+    def get_username(self):
+        return f'{self.phone_number}'
 
 class Product(models.Model):
     user = models.ForeignKey(on_delete=models.CASCADE,to=settings.AUTH_USER_MODEL,related_name='user')
