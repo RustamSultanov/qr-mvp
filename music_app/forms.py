@@ -84,8 +84,8 @@ class RegistrationCustomForm(forms.ModelForm):
         model = User
         fields = [User.USERNAME_FIELD, 'first_name']
         widgets = {
-        User.USERNAME_FIELD : PhoneNumberInternationalFallbackWidget(attrs={'placeholder' : 'Ваша почта'}),
-        'first_name' : forms.TextInput(attrs={'placeholder' : 'Имя', 'name' : 'Name'}),
+        User.USERNAME_FIELD : PhoneNumberInternationalFallbackWidget(attrs={'id' : 'phone', 'class' : 'mdc-text-field__input'}),
+        'first_name' : forms.TextInput(attrs={'id' : 'name', 'class' : 'mdc-text-field__input'}),
         
     
         }
