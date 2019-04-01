@@ -70,12 +70,9 @@ class User(AbstractUser):
     def is_staff(self):
         return self.is_admin
 
-    def get_full_name(self):
-        return self.phone_number
-
     def get_short_name(self):
         return self.phone_number
-        
+
     def get_username(self):
         return f'{self.phone_number}'
 

@@ -12,7 +12,25 @@ from django.contrib.auth import authenticate, login
 User = get_user_model()
 
 # # Create your views here
-def registration_chat_view(request):
+
+@login_required
+def chat_view(request, product_id,user_id):
+    product = Product.objects.get(id=product_id)
+    user = User.objects.get(id=user_id)
+    messeges = Messeges.objects.prefetch_related('user','accepter').filter(product=product,user=user)
+    form = MessegesForm(request.POST or None)
+    if form.is_valid():
+        new_disput = form.save(commit=False)
+        text = form.cleaned_data['text']
+        new_disput.text = text
+        new_disput.user = request.user
+        new_disput.accepter = product.user
+        new_disput.product = product
+        new_disput.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    return render(request, 'chat-2.html', {'product':product,'messeges':messeges,'form': form})
+
+def registration_chat_view(request, product_id):
     form = RegistrationCustomForm(request.POST or None)
     if form.is_valid():
         new_user = form.save(commit=False)
@@ -22,10 +40,12 @@ def registration_chat_view(request):
         new_user.first_name = first_name
         new_user.save()
         login_user = authenticate(phone_number=phone_number)
-            if login_user:
-                login(request, login_user)
-                return HttpResponseRedirect(reverse('product'))
-        return HttpResponseRedirect(reverse('product'))
+        if login_user:
+            login(request, login_user)
+            return HttpResponseRedirect(f'/{product_id}-{user_id}')
+        else:
+            print(login_user,'wronn')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     context = {
         'form': form
     }
