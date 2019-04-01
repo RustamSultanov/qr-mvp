@@ -24,7 +24,10 @@ def chat_view(request, product_id,user_id):
         text = form.cleaned_data['text']
         new_disput.text = text
         new_disput.user = request.user
-        new_disput.accepter = product.user
+        if request.user == product.user:
+            new_disput.accepter = messeges.first().user
+        else:
+            new_disput.accepter = product.user
         new_disput.product = product
         new_disput.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
