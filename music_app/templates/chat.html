@@ -13,14 +13,14 @@
                             <div class="mdc-layout-grid__inner">
                                 <div class="mdc-layout-grid__cell--span-3-phone mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-9-desktop">
                                     <div class="mdc-typography--overline">Детское питание</div>
-                                    <h5 class="mdc-typography--headline5">Nuppi 1</h5>
-                                    <div class="mdc-typography--body2 product-card-muted">NUPPI® 1 адаптированная сухая молочная смесь</div>
+                                    <h5 class="mdc-typography--headline5">{{ product.title }}</h5>
+                                    <div class="mdc-typography--body2 product-card-muted">{{ product.short_descrip }}</div>
                                 </div>
                                 <div class="mdc-layout-grid__cell--span-1-phone mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-3-desktop">
                                     <img src="assets/img/nuppi-gold-small.png" alt="">
                                 </div>
                                 <div class="mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-12-desktop">
-                                    <a href="#" class="mdc-button gray-button">О продукте</a>
+                                    <a href="{% url 'product' product.id %}" class="mdc-button gray-button">О продукте</a>
                                 </div>
                             </div>
                         </div>

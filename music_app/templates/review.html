@@ -1,48 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,  maximum-scale=1, user-scalable=no">
-    <!-- import Material Icons from Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
-    <link rel="stylesheet" href="assets/css/bundle.css">
-</head>
-<body class="mdc-typography">
+ {% extends "base.html" %}
+{% load static %}
 
-<aside class="mdc-drawer mdc-drawer--modal">
-    <div class="mdc-drawer__content">
-        <nav class="mdc-list">
-            <a class="mdc-list-item mdc-list-item--activated" href="#" aria-selected="true">
-                <span class="mdc-list-item__text">Бренды</span>
-            </a>
-            <a class="mdc-list-item" href="#">
-                <span class="mdc-list-item__text">Магазины</span>
-            </a>
-            <a class="mdc-list-item" href="#">
-                <span class="mdc-list-item__text">Отзывы</span>
-            </a>
-            <a class="mdc-list-item" href="#">
-                <span class="mdc-list-item__text">Чаты</span>
-            </a>
-        </nav>
-    </div>
-</aside>
 
-<div class="mdc-drawer-scrim"></div>
-<div class="drawer-frame-app-content">
-
-    <header class=" mdc-top-app-bar mdc-top-app-bar--raised" id="top-app-bar">
-        <div class="mdc-top-app-bar__row">
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-                <button class="material-icons mdc-top-app-bar__navigation-icon">menu</button></section>
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-                <button class="material-icons mdc-top-app-bar__action-item" aria-label="Favorite">favorite</button>
-                <button class="material-icons mdc-top-app-bar__action-item" aria-label="Search">search</button>
-                <button class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page">more_vert</button>
-            </section>
-        </div>
-    </header>
+ {% block content %}
     <div class="mdc-top-app-bar--fixed-adjust">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
@@ -52,14 +12,14 @@
                             <div class="mdc-layout-grid__inner">
                                 <div class="mdc-layout-grid__cell--span-3-phone mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-9-desktop">
                                     <div class="mdc-typography--overline">Детское питание</div>
-                                    <h5 class="mdc-typography--headline5">Nuppi 1</h5>
-                                    <div class="mdc-typography--body2 product-card-muted">NUPPI® 1 адаптированная сухая молочная смесь</div>
+                                    <h5 class="mdc-typography--headline5">{{ product.title }}</h5>
+                                    <div class="mdc-typography--body2 product-card-muted">{{ product.short_descrip }}</div>
                                 </div>
                                 <div class="mdc-layout-grid__cell--span-1-phone mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-3-desktop">
                                     <img src="assets/img/nuppi-gold-small.png" alt="">
                                 </div>
                                 <div class="mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-12-desktop">
-                                    <a href="#" class="mdc-button gray-button">О продукте</a>
+                                    <a href="{% url 'product' product.id %}" class="mdc-button gray-button">О продукте</a>
                                     <a href="#" class="mdc-button gray-button">Чат</a>
 
                                 </div>
@@ -67,6 +27,8 @@
                         </div>
                     </div>
                     <div class="mdc-typography-text--center">
+                        <form enctype="multipart/form-data" action="" method="post">
+                        {% csrf_token %}
                         <div class="mdc-typography--section">
                             <h6 class="mdc-typography--headline6">Написать отзыв</h6>
                             <div class="mdc-typography--body2 mdc-typography-text--muted">Вы можете оценить продукт или услугу только на основании подтверждающего документа (чек, купон, инвойс).</div>
@@ -76,37 +38,22 @@
                         </div>
                         <div class="mdc-typography--section">
                             <div class="ui-stars form-stars ui-stars--secondary large">
-                                <input type="radio" class="input-hidden" name="rating" value="1" id="rating_star_1">
-                                <label class="ui-star" for="rating_star_1">
+                                {% for radio in form.rating %}
+                                                   
+                                                   
+                                {{ radio.tag }}
+                                <label class="ui-star" for="rating_star_{{ radio.choice_label }}">
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                 </label>
-                                <input type="radio" class="input-hidden" name="rating" value="2" id="rating_star_2">
-                                <label class="ui-star" for="rating_star_2">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                </label>
-                                <input type="radio" class="input-hidden" name="rating" value="3" id="rating_star_3">
-                                <label class="ui-star" for="rating_star_3">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                </label>
-                                <input type="radio" class="input-hidden" name="rating" value="4" id="rating_star_4">
-                                <label class="ui-star" for="rating_star_4">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                </label>
-                                <input type="radio" class="input-hidden" name="rating" value="5" id="rating_star_5">
-                                <label class="ui-star" for="rating_star_5">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                </label>
+                                
+                                 {% endfor %}
                             </div>
                         </div>
                         <div class="mdc-typography--section">
                             <div class="field-container">
                                 <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--outlined-w100" data-mdc-auto-init="MDCTextField">
-                                    <textarea id="textarea" class="mdc-text-field__input" rows="4" cols="40"></textarea>
+                                    {{ form.adv }} 
                                     <div class="mdc-notched-outline">
                                         <div class="mdc-notched-outline__leading"></div>
                                         <div class="mdc-notched-outline__notch">
@@ -118,7 +65,7 @@
                             </div>
                             <div class="field-container">
                                 <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--outlined-w100" data-mdc-auto-init="MDCTextField">
-                                    <textarea id="textarea-2" class="mdc-text-field__input" rows="4" cols="40"></textarea>
+                                    {{ form.disadv }} 
                                     <div class="mdc-notched-outline">
                                         <div class="mdc-notched-outline__leading"></div>
                                         <div class="mdc-notched-outline__notch">
@@ -130,7 +77,7 @@
                             </div>
                             <div class="field-container">
                                 <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--outlined-w100" data-mdc-auto-init="MDCTextField">
-                                    <textarea id="textarea-3" class="mdc-text-field__input" rows="4" cols="40"></textarea>
+                                    {{ form.text }} 
                                     <div class="mdc-notched-outline">
                                         <div class="mdc-notched-outline__leading"></div>
                                         <div class="mdc-notched-outline__notch">
@@ -142,26 +89,21 @@
                             </div>
                             <div class="field-container">
                                 <label for="file">
-                                    <input type="file" id="file" class="input-hidden">
+                                    {{ form.files }} 
                                     <div class="mdc-button gray-button mdc-button-shaped mdc-button--ui-width-200"><span class="material-icons">attach_file</span>прикрепить файл</div>
                                 </label>
                             </div>
                         </div>
                         <div class="mdc-typography--section">
-                            <button class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">
+                            <button type="submit" class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">
                                 ОТПРАВИТЬ
                             </button>
                         </div>
+                    </form>
                     </div>
 
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
-
-<script src="assets/js/bundle.js" async></script>
-</body>
-</html>
+{% endblock %}

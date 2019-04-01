@@ -1,4 +1,4 @@
-from .models import Messeges
+from .models import Messeges, Feedback
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
@@ -120,3 +120,16 @@ class MessegesForm(forms.ModelForm):
         widgets = {
                 'text': forms.TextInput(attrs={'id' : 'message', 'class' : 'mdc-text-field__input'})
                 }
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+            model = Feedback
+            fields = ['text', 'rating', 'files', 'adv', 'disadv', ]
+            widgets = {
+                'text': forms.Textarea(attrs={'id':"textarea-3",'class':"mdc-text-field__input", 'rows' : '4','cols':"40"}),
+                'adv': forms.Textarea(attrs={'id':"textarea-1",'class':"mdc-text-field__input", 'rows' : '4','cols':"40"}),
+                'disadv': forms.Textarea(attrs={'id':"textarea-2",'class':"mdc-text-field__input",' name':"rating", 'rows' : '4','cols':"40"}),
+                'rating': forms.RadioSelect(attrs={'class':"input-hidden",' name':"rating"}),
+                'files': forms.ClearableFileInput(attrs={'id':"file",'class':"input-hidden",}),
+            }
+
