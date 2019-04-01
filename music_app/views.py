@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm, ProfileForm,RegistrationCustomForm,MessegesForm
+from .forms import LoginForm, ProfileForm,RegistrationCustomForm,MessegesForm,FeedbackForm
 from .models import *
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -45,7 +45,7 @@ def registration_chat_view(request, product_id):
         user = User.objects.get(id=new_user.id)
         if user:
             login(request, user)
-            return HttpResponseRedirect(f'/{product_id}-{user.id}')
+            return HttpResponseRedirect(f'product-chat/{product_id}-{user.id}')
         else:
             print(login_user,'wronn')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -61,6 +61,33 @@ def product_view(request, product_id):
 def product_detail_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'details.html', {'product': product})
+
+@login_required
+def feedback_view(request, product_id):
+    form = FeedbackForm(request.POST or None, request.FILES or None)
+    product = get_object_or_404(Product, id=product_id)
+    if form.is_valid():
+        new_feed = form.save(commit=False)
+        text = form.cleaned_data['text']
+        adv = form.cleaned_data['adv']
+        disadv = form.cleaned_data['disadv']
+        files = form.cleaned_data['files']
+        rating = form.cleaned_data['company_name']
+        user = User.objects.get(id = request.user)
+        new_feed.user = user
+        new_feed.text = text
+        new_feed.adv = adv
+        new_feed.files = files
+        new_feed.rating= rating
+        new_feed.product= product
+        new_feed.save()
+        return HttpResponseRedirect(f'product/{product_id}')
+    context = {
+        'form': form,
+        'product':product
+    }
+    return render(request, 'review.html', context)
+
 
 @login_required
 def edit_profile_view(request, user_id):
