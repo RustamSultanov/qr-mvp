@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, login
 
 User = get_user_model()
 
@@ -14,8 +15,16 @@ User = get_user_model()
 def registration_chat_view(request):
     form = RegistrationCustomForm(request.POST or None)
     if form.is_valid():
-        new_user = form.save()
+        new_user = form.save(commit=False)
+        phone_number = form.cleaned_data['phone_number']
+        first_name = form.cleaned_data['first_name']
+        new_user.phone_number = phone_number
+        new_user.first_name = first_name
         new_user.save()
+        login_user = authenticate(phone_number=phone_number)
+            if login_user:
+                login(request, login_user)
+                return HttpResponseRedirect(reverse('product'))
         return HttpResponseRedirect(reverse('product'))
     context = {
         'form': form
