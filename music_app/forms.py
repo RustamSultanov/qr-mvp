@@ -1,3 +1,4 @@
+from .models import Messeges
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
@@ -110,3 +111,12 @@ class ProfileForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control', }),
             'profile_picture': forms.FileInput()
         }
+
+class MessegesForm(forms.ModelForm):
+
+    class Meta:
+        model = Messeges
+        fields = ['text']
+        widgets = {
+                'text': forms.TextInput(attrs={'id' : 'message', 'class' : 'mdc-text-field__input'})
+                }
