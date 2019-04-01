@@ -72,8 +72,8 @@ def feedback_view(request, product_id):
         adv = form.cleaned_data['adv']
         disadv = form.cleaned_data['disadv']
         files = form.cleaned_data['files']
-        rating = form.cleaned_data['company_name']
-        user = User.objects.get(id = request.user)
+        rating = form.cleaned_data['rating']
+        user = User.objects.get(id = request.user.id)
         new_feed.user = user
         new_feed.text = text
         new_feed.adv = adv
@@ -81,7 +81,7 @@ def feedback_view(request, product_id):
         new_feed.rating= rating
         new_feed.product= product
         new_feed.save()
-        return HttpResponseRedirect(f'product/{product_id}')
+        return HttpResponseRedirect(f'../product/{product_id}')
     context = {
         'form': form,
         'product':product
