@@ -45,14 +45,14 @@
                             </button></a>
                         </div>
                         <div class="button-wrap">
-                            <button class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">
+                            <a href="{% url 'feedback' product.id %}"><button class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">
                                 НАПИСАТЬ ОТЗЫВ
-                            </button>
+                            </button></a>
                         </div>
                         <div class="button-wrap">
-                            <button class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">
+                            <a href="{% url 'registration_chat' product.id %}"><button class="mdc-button mdc-button--raised mdc-button-shaped mdc-button--ui-width-200">
                                 НАПИСАТЬ В ЧАТ
-                            </button>
+                            </button></a>
                         </div>
                     </div>
                 </div>
