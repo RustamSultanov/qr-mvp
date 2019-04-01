@@ -23,4 +23,6 @@ urlpatterns = [
         'product-chat/<int:product_id>', views.registration_chat_view, name='registration_chat'),
     path(
         'product-chat/<int:product_id>-<int:user_id>', views.chat_view, name='chat'),
+    path(
+        'product-feedback/<int:product_id>', views.feedback_view, name='feedback'),
 ]
