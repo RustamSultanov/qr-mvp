@@ -22,9 +22,9 @@ def registration_chat_view(request):
         new_user.first_name = first_name
         new_user.save()
         login_user = authenticate(phone_number=phone_number)
-            if login_user:
-                login(request, login_user)
-                return HttpResponseRedirect(reverse('product'))
+        if login_user:
+            login(request, login_user)
+            return HttpResponseRedirect(reverse('product'))
         return HttpResponseRedirect(reverse('product'))
     context = {
         'form': form

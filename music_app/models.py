@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager
 from audiofield.models import AudioFile
 from phonenumber_field.modelfields import PhoneNumberField
-
+from django.conf import settings
 
 class UserManager(BaseUserManager):
 	"""
