@@ -19,9 +19,9 @@ class UserManager(BaseUserManager):
 		    raise ValueError('Users must have an phone number')
 
 		user = self.model(
-		    phone_number=self.phone_number,
+		    phone_number=phone_number,
 		    profile_picture=profile_picture,
-		    username =self.phone_number,
+		    username =phone_number,
 		)
 		user.set_password(password)
 		user.save(using=self._db)
