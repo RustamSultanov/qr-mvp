@@ -19,4 +19,6 @@ urlpatterns = [
         'product/<int:product_id>', views.product_view, name='product'),
     path(
         'product-detail/<int:product_id>', views.product_detail_view, name='product_detail'),
+    path(
+        'product-chat', views.registration_chat_view, name='registration_chat'),
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm, ProfileForm
+from .forms import LoginForm, ProfileForm,RegistrationCustomForm
 from .models import *
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -11,6 +11,16 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 # # Create your views here
+def registration_chat_view(request):
+    form = RegistrationCustomForm(request.POST or None)
+    if form.is_valid():
+        new_user = form.save()
+        new_user.save()
+        return HttpResponseRedirect(reverse('product'))
+    context = {
+        'form': form
+    }
+    return render(request, 'chat.html', context)
 
 def product_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
