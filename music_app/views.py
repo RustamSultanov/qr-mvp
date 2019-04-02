@@ -33,6 +33,7 @@ def chat_view(request, product_id,user_id):
     return render(request, 'chat-2.html', {'product':product,'messeges':messeges,'form': form})
 
 def registration_chat_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
     form = RegistrationCustomForm(request.POST or None)
     if form.is_valid():
         new_user = form.save(commit=False)
@@ -48,7 +49,7 @@ def registration_chat_view(request, product_id):
         else:
             print(login_user,'wronn')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return render(request, 'chat.html', {'form': form})
+    return render(request, 'chat.html', {'product': product,'form': form})
 
 def product_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
