@@ -15,8 +15,10 @@ User = get_user_model()
 
 def chat_view(request, product_id,user_id):
     product = Product.objects.get(id=product_id)
-    user = User.objects.get(id=user_id)
-    messeges = Messeges.objects.prefetch_related('user','accepter').filter(product=product)
+    qs = []
+    qs.append(Messeges.objects.prefetch_related('user','accepter').filter(product=product,user=request.user.id))
+    qs.append(Messeges.objects.prefetch_related('user','accepter').filter(product=product,accepter=request.user.id))
+    messeges = qs
     form = MessegesForm(request.POST or None)
     if form.is_valid():
         new_disput = form.save(commit=False)
@@ -45,7 +47,7 @@ def registration_chat_view(request, product_id):
         user = User.objects.get(id=new_user.id)
         if user:
             login(request, user)
-            return HttpResponseRedirect(f'product-chat/{product_id}-{user.id}')
+            return HttpResponseRedirect(f'../product-chat/{product_id}-{user.id}')
         else:
             print(login_user,'wronn')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

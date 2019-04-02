@@ -22,7 +22,7 @@ urlpatterns = [
     path(
         'product-detail/<int:product_id>', views.product_detail_view, name='product_detail'),
     path(
-        'product-chat/<int:product_id>/', views.registration_chat_view, name='registration_chat'),
+        'prod-chat-<int:product_id>/', views.registration_chat_view, name='registration_chat'),
     path(
         'product-feedback/<int:product_id>', views.feedback_view, name='feedback'),
 ]
