@@ -13,7 +13,6 @@ User = get_user_model()
 
 # # Create your views here
 
-@login_required
 def chat_view(request, product_id,user_id):
     product = Product.objects.get(id=product_id)
     user = User.objects.get(id=user_id)
@@ -49,10 +48,7 @@ def registration_chat_view(request, product_id):
         else:
             print(login_user,'wronn')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    context = {
-        'form': form
-    }
-    return render(request, 'chat.html', context)
+    return render(request, 'chat.html', {'form': form})
 
 def product_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -62,7 +58,6 @@ def product_detail_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'details.html', {'product': product})
 
-@login_required
 def feedback_view(request, product_id):
     form = FeedbackForm(request.POST or None, request.FILES or None)
     product = get_object_or_404(Product, id=product_id)
