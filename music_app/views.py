@@ -15,10 +15,9 @@ User = get_user_model()
 
 def chat_view(request, product_id,user_id):
     product = Product.objects.get(id=product_id)
-    qs = []
-    qs.append(Messeges.objects.prefetch_related('user','accepter').filter(product=product,user=request.user.id))
-    qs.append(Messeges.objects.prefetch_related('user','accepter').filter(product=product,accepter=request.user.id))
-    messeges = qs
+    qs1 = Messeges.objects.prefetch_related('user','accepter').filter(product=product,user=request.user.id)
+    qs2 = Messeges.objects.prefetch_related('user','accepter').filter(product=product,accepter=request.user.id)
+    messeges = qs1.union(qs2).order_by('date_create')
     form = MessegesForm(request.POST or None)
     if form.is_valid():
         new_disput = form.save(commit=False)

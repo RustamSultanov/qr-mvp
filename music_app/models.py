@@ -102,7 +102,7 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
 
 class Feedback(models.Model):
-    user = models.ForeignKey(on_delete=models.CASCADE,to=settings.AUTH_USER_MODEL,related_name='user_feed')
+    user = models.ForeignKey(on_delete=models.CASCADE,to=settings.AUTH_USER_MODEL,related_name='user_feed',blank=True,null=True)
     product = models.ForeignKey(on_delete=models.CASCADE,to=Product)
     text = models.TextField()
     adv = models.TextField()
